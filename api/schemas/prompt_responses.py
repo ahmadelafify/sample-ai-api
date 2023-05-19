@@ -1,7 +1,6 @@
 from abc import ABC
 
 from pydantic import Field
-import pymongo
 from pymongo.collection import Collection
 
 from api.schemas.base import BaseDBModel
