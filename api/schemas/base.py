@@ -26,10 +26,6 @@ class OrderType(str, Enum):
 class BaseDBModel(BaseModel, metaclass=BaseModelMetaABC):
     id: UUID = Field(None, alias="_id", description="DB Object Id")
 
-    def __init__(self, **kwargs):
-        self.collection_name: str
-        super().__init__(**kwargs)
-
     @classmethod
     def _key(cls, query: dict):
         key = {}

@@ -12,9 +12,6 @@ class PromptResponse(BaseDBModel, ABC):
     prompt: str = Field(None, description="Prompt message")
     openai_response: str = Field(None, description="OpenAI prompt response")
 
-    def __init__(self, **data):
-        super().__init__(**data)
-
     @classmethod
     def _get_collection(cls) -> Collection:
         return database['prompt_responses']

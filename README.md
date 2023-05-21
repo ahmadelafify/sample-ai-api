@@ -17,7 +17,6 @@ Setup a request to whichever endpoints:
   GET to /history
   DELETE to /clear_history 
 Add a new Header: "Authorization" with the env.API_KEY
-Setup 
 ```
 Ensure Authorization Header
 ![Headers](https://i.imgur.com/ulbY9Jr.png)
