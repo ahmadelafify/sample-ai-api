@@ -18,7 +18,10 @@ def talk_websocket(ws: WebsocketServer):
     while True:
         message = ws.receive()
         print('Received message:', message)
-        ws.send('Response message')
+        if message:
+            response = get_openai_response(message)
+            ws.send(response)
+            print('Sent response:', response)
 
 
 @socket_io.on('connect', namespace="/talk")
