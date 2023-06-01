@@ -1,3 +1,0 @@
-started @ 15:34
-finished api @ 17:25
-starting README and upload to github

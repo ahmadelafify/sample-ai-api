@@ -1,5 +1,8 @@
 from flask import Flask
 
+from api.routes.ai import ai_bp
+
 
 app = Flask(__name__)
-from api.routes import ai
+
+app.register_blueprint(ai_bp)

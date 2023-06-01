@@ -1,14 +1,17 @@
 from flask import request, make_response
+from flask import request, make_response, Blueprint
 from pydantic import ValidationError
 
-from api import app
 from api.schemas.prompt_responses import PromptResponse
 from api.utils.auth import requires_auth
 from api.models.responses import AskAIPayload
 from api.utils.openai import get_openai_response
 
 
-@app.route('/history', methods=["GET"])
+ai_bp = Blueprint('ai', __name__, template_folder='../templates', static_folder="../static")
+
+
+@ai_bp.route('/history', methods=["GET"])
 @requires_auth
 def get_openai_history():
     email = request.args.get("email", None)
@@ -20,7 +23,7 @@ def get_openai_history():
     return make_response({"results": history}, 200)
 
 
-@app.route('/ask', methods=["POST"])
+@ai_bp.route('/ask', methods=["POST"])
 @requires_auth
 def ask_open_ai():
     body = request.get_json()
@@ -38,7 +41,7 @@ def ask_open_ai():
     return make_response({"prompt": payload.prompt, "response": openai_response}, 200)
 
 
-@app.route('/clear_history', methods=["DELETE"])
+@ai_bp.route('/clear_history', methods=["DELETE"])
 @requires_auth
 def clear_ai_history():
     email = request.args.get("email", None)
